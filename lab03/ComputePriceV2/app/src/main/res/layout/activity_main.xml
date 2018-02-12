@@ -1,19 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.jb963962.computepricev2.MainActivity">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/entry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:layout_toRightOf="@+id/text"
+        android:gravity="center"
+        android:padding="5sp"
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+        <EditText
+            android:id="@+id/price_entry_field"
+            android:layout_width="200sp"
+            android:inputType="numberDecimal"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/quantity_entry_field"
+            android:inputType="numberDecimal"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/tax_entry_field"
+            android:layout_width="200sp"
+            android:inputType="numberDecimal"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:id="@+id/total_display_field"
+            android:layout_width="200sp"
+            android:inputType="none"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20sp">
+
+
+        <TextView
+            android:id="@+id/enter_price_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4sp"
+            android:text="Enter Item Price" />
+
+        <TextView
+            android:id="@+id/enter_quantity_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter Quantity" />
+
+        <TextView
+            android:id="@+id/enter_tax_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Enter Tax %" />
+
+        <TextView
+            android:id="@+id/total_price_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Total Price" />
+        <Button
+            android:id="@+id/compute_button"
+            android:padding="10dp"
+            android:text="Compute"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>
