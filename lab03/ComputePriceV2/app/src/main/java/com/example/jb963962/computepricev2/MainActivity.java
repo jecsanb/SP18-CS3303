@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         items = new ArrayList<>();
         running_total = 0;
 
+        //associate objects to the correct xml fields.
         name_entry = findViewById(R.id.item_name_entry);
         price_entry = findViewById(R.id.item_price_entry);
         quantity_entry = findViewById(R.id.item_qty_entry);
@@ -33,8 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
         total_display= findViewById(R.id.item_total_entry);
 
-
-
+        // associate button objects to their xml and set listeners
         compute = findViewById(R.id.compute_button);
         compute.setEnabled(true);
         compute.setOnClickListener(new Button.OnClickListener() {
@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         show_list.setOnClickListener(new Button.OnClickListener() {
 
             public void onClick(View v){
+                // prepare  the items object to be sent over to the ListItems activity
+                // send object and open the ListItems Activity
                 Toast.makeText(MainActivity.this, "Show list clicked!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         add_item.setOnClickListener(new Button.OnClickListener() {
 
             public void onClick(View v){
+                // open the add item activity here
                 Toast.makeText(MainActivity.this, "Add item clicked!", Toast.LENGTH_SHORT).show();
             }
         });
@@ -71,6 +74,7 @@ public class MainActivity extends AppCompatActivity {
         int qty;
 
         try{
+           // check for valid input ( kinda)
            price = Double.parseDouble(price_entry.getText().toString());
            tax_rate = Double.parseDouble(tax_entry.getText().toString());
            qty = Integer.parseInt(quantity_entry.getText().toString());
@@ -83,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         total = (price*qty) + (price*qty*tax_rate)/100;
         total_display.setText(String.format("$%.2f",total));
 
+        //package data in to an item and store it.
         items.add(new Item(
                 name_entry.getText().toString(),
                 String.format("$%.2f",price),
