@@ -12,8 +12,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    private  Button compute,add_item,show_list;
-    private  EditText price_entry,quantity_entry,tax_entry,total_display,name_entry;
+    private Button compute, add_item, show_list;
+    private EditText price_entry, quantity_entry, tax_entry, total_display, name_entry;
     private ArrayList<Item> items;
     private double running_total;
 
@@ -30,16 +30,16 @@ public class MainActivity extends AppCompatActivity {
         name_entry = findViewById(R.id.item_name_entry);
         price_entry = findViewById(R.id.item_price_entry);
         quantity_entry = findViewById(R.id.item_qty_entry);
-        tax_entry= findViewById(R.id.item_tax_entry);
+        tax_entry = findViewById(R.id.item_tax_entry);
 
-        total_display= findViewById(R.id.item_total_entry);
+        total_display = findViewById(R.id.item_total_entry);
 
         // associate button objects to their xml and set listeners
         compute = findViewById(R.id.compute_button);
         compute.setEnabled(true);
         compute.setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View v){
-               if(tryCalculate()){
+            public void onClick(View v) {
+                if (tryCalculate()) {
                     add_item.setEnabled(true);
                     show_list.setEnabled(true);
                 }
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         show_list.setEnabled(false);
         show_list.setOnClickListener(new Button.OnClickListener() {
 
-            public void onClick(View v){
+            public void onClick(View v) {
                 // prepare  the items object to be sent over to the ListItems activity
                 // send object and open the ListItems Activity
                 Toast.makeText(MainActivity.this, "Show list clicked!", Toast.LENGTH_SHORT).show();
@@ -61,44 +61,46 @@ public class MainActivity extends AppCompatActivity {
         add_item.setEnabled(false);
         add_item.setOnClickListener(new Button.OnClickListener() {
 
-            public void onClick(View v){
+            public void onClick(View v) {
                 // open the add item activity here
                 Toast.makeText(MainActivity.this, "Add item clicked!", Toast.LENGTH_SHORT).show();
             }
         });
 
     }
+
     // returns true if the calculation was successful
-    private Boolean tryCalculate(){
-        double total ,price, tax_rate;
+    private Boolean tryCalculate() {
+        double total, price, tax_rate;
         int qty;
 
-        try{
-           // check for valid input ( kinda)
-           price = Double.parseDouble(price_entry.getText().toString());
-           tax_rate = Double.parseDouble(tax_entry.getText().toString());
-           qty = Integer.parseInt(quantity_entry.getText().toString());
+        try {
+            // check for valid input ( kinda)
+            price = Double.parseDouble(price_entry.getText().toString());
+            tax_rate = Double.parseDouble(tax_entry.getText().toString());
+            qty = Integer.parseInt(quantity_entry.getText().toString());
 
-        }catch(NumberFormatException e){
+        } catch (NumberFormatException e) {
             invalidInputToast();
-           return false;
+            return false;
         }
 
-        total = (price*qty) + (price*qty*tax_rate)/100;
-        total_display.setText(String.format("$%.2f",total));
+        total = (price * qty) + (price * qty * tax_rate) / 100;
+        total_display.setText(String.format("$%.2f", total));
 
         //package data in to an item and store it.
         items.add(new Item(
                 name_entry.getText().toString(),
-                String.format("$%.2f",price),
-                ((Integer)qty).toString()
+                String.format("$%.2f", price),
+                ((Integer) qty).toString()
         ));
 
         running_total += total;
         return true;
     }
-    private void invalidInputToast(){
-        Toast toast = Toast.makeText(this,"Invalid Input!",Toast.LENGTH_SHORT) ;
+
+    private void invalidInputToast() {
+        Toast toast = Toast.makeText(this, "Invalid Input!", Toast.LENGTH_SHORT);
         TextView v = toast.getView().findViewById(android.R.id.message);
         v.setTextColor(Color.RED);
         toast.show();
