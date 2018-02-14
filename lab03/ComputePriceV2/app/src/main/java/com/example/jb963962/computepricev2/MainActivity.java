@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     private Button compute, add_item, show_list;
     private EditText price_entry, quantity_entry, tax_entry, total_display, name_entry;
     private ArrayList<Item> items;
-    private double running_total;
+    private double tax_rate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity {
 
         //This will hold all the items entered.
         items = new ArrayList<>();
-        running_total = 0;
 
         //associate objects to the correct xml fields.
         name_entry = findViewById(R.id.item_name_entry);
@@ -42,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 if (tryCalculate()) {
                     add_item.setEnabled(true);
                     show_list.setEnabled(true);
+                    compute.setEnabled(false);
                 }
             }
         });
@@ -62,8 +62,13 @@ public class MainActivity extends AppCompatActivity {
         add_item.setOnClickListener(new Button.OnClickListener() {
 
             public void onClick(View v) {
+                Item item = new Item(); // temp value
                 // open the add item activity here
                 Toast.makeText(MainActivity.this, "Add item clicked!", Toast.LENGTH_SHORT).show();
+
+
+                //logic about opening activity above
+                tryComputeFromReturn(item);
             }
         });
 
@@ -71,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 
     // returns true if the calculation was successful
     private Boolean tryCalculate() {
-        double total, price, tax_rate;
+        double total, price;
         int qty;
 
         try {
@@ -89,14 +94,26 @@ public class MainActivity extends AppCompatActivity {
         total_display.setText(String.format("$%.2f", total));
 
         //package data in to an item and store it.
-        items.add(new Item(
+
+        addToItems(new Item(
                 name_entry.getText().toString(),
                 String.format("$%.2f", price),
                 ((Integer) qty).toString()
         ));
 
-        running_total += total;
         return true;
+    }
+
+    private void addToItems(Item item) {
+        items.add(item);
+    }
+
+    private boolean tryComputeFromReturn(Item item) {
+        name_entry.setText(item.getIName());
+        price_entry.setText(item.getPrice());
+        quantity_entry.setText(item.getQty());
+        return tryCalculate();
+
     }
 
     private void invalidInputToast() {
