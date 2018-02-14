@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                 //logic about opening activity above
-                tryComputeFromReturn(item);
+                tryCalculateFromReturn(item);
             }
         });
 
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         addToItems(new Item(
                 name_entry.getText().toString(),
                 String.format("$%.2f", price),
-                ((Integer) qty).toString()
+                quantity_entry.getText().toString()
         ));
 
         return true;
@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         items.add(item);
     }
 
-    private boolean tryComputeFromReturn(Item item) {
+    private boolean tryCalculateFromReturn(Item item) {
         name_entry.setText(item.getIName());
         price_entry.setText(item.getPrice());
         quantity_entry.setText(item.getQty());
