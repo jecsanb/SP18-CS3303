@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
                 // send object and open the ListItems Activity
                 Toast.makeText(MainActivity.this, "Show list clicked!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, ListItemsActivity.class);
-                intent.putExtra("ITEMS",items);
+                intent.putExtra("ITEMS", items);
                 startActivity(intent);
 
             }
