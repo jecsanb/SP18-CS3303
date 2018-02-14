@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jb963962.computepricev2.ItemEntryActivity">
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="Number of item(s): 0"
+            android:layout_width="wrap_content"
+            android:paddingTop="10sp"
+            android:paddingLeft="10sp"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_name_label"
+            android:text="Item Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingEnd="30sp"
+            android:paddingLeft="10sp"
+            android:paddingRight="30sp" />
+
+        <EditText
+            android:id="@+id/item_name_entry"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:hint="Enter name"
+            android:inputType="text" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_price_label"
+            android:text="Item Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10sp"
+            android:paddingRight="35sp" />
+
+        <EditText
+            android:id="@+id/item_price_entry"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:hint="0.00"
+            android:inputType="numberDecimal" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/item_qty_label"
+            android:text="Item quantity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10sp"
+            android:paddingRight="20sp" />
+
+        <EditText
+            android:id="@+id/item_qty_entry"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:hint="0"
+            android:inputType="number" />
+    </LinearLayout>
+</LinearLayout>
