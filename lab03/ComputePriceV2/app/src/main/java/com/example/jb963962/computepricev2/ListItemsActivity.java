@@ -1,5 +1,6 @@
 package com.example.jb963962.computepricev2;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TableLayout;
@@ -11,14 +12,16 @@ import java.util.ArrayList;
 public class ListItemsActivity extends AppCompatActivity {
 
     private ArrayList<Item> items;
-    private final String ITEM_KEY = "item";
+    private final String ITEMS = "ITEMS";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_items);
 
+
         // get the items from the last activity;
 
+        items = (ArrayList<Item>) getIntent().getSerializableExtra(ITEMS);
         TableLayout table =  findViewById(R.id.item_table);
         for( Item item : items) {
             TableRow row = new TableRow(this);

@@ -1,5 +1,6 @@
 package com.example.jb963962.computepricev2;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,6 +55,10 @@ public class MainActivity extends AppCompatActivity {
                 // prepare  the items object to be sent over to the ListItems activity
                 // send object and open the ListItems Activity
                 Toast.makeText(MainActivity.this, "Show list clicked!", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, ListItemsActivity.class);
+                intent.putExtra("ITEMS",items);
+                startActivity(intent);
+
             }
         });
 

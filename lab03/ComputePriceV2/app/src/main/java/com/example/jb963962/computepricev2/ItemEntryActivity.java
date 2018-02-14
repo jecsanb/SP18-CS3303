@@ -11,13 +11,10 @@ public class ItemEntryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_entry);
 
-        item = new Item();
-
         //wire the textEdits
 
         //add the fields to the item.
 
-        item.
 
 
 

@@ -1,10 +1,12 @@
 package com.example.jb963962.computepricev2;
 
+import java.io.Serializable;
+
 /**
  * Created by jecsan on 2/13/18.
  */
 
-public class Item {
+public class Item implements Serializable {
     private String name, price, qty;
 
     Item() {
