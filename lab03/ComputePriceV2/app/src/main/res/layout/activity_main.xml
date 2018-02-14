@@ -75,7 +75,7 @@
 
         <TextView
             android:id="@+id/item_tax_label"
-            android:text="salex tax %"
+            android:text="Sales tax %"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingLeft="10sp"

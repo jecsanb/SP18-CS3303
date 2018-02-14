@@ -9,9 +9,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
-    private  Button calculate;
-    private  EditText price_entry,quantity_entry,tax_entry,total_display;
+    private  Button compute,add_item,show_list;
+    private  EditText price_entry,quantity_entry,tax_entry,total_display,name_entry;
+    private ArrayList<Item> items;
 
     private  Double price,tax_rate,total;
     private  Integer qty;
@@ -20,8 +23,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        items = new ArrayList<>();
+
         price = tax_rate = total = 0.0;
         qty  = 0;
+
+
         price_entry = findViewById(R.id.item_price_entry);
         quantity_entry = findViewById(R.id.item_qty_entry);
         tax_entry= findViewById(R.id.item_tax_entry);
@@ -29,12 +36,28 @@ public class MainActivity extends AppCompatActivity {
         total_display= findViewById(R.id.item_total_entry);
         total_display.setKeyListener(null);
 
-        calculate = findViewById(R.id.compute_button);
-        calculate.setOnClickListener(new Button.OnClickListener() {
+        compute = findViewById(R.id.compute_button);
+        compute.setOnClickListener(new Button.OnClickListener() {
+
             public void onClick(View v){
                 calculate();
             }
         });
+        show_list = findViewById(R.id.show_list_button);
+        show_list.setOnClickListener(new Button.OnClickListener() {
+
+            public void onClick(View v){
+                Toast.makeText(MainActivity.this, "Show list clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+        add_item = findViewById(R.id.add_item_button);
+        add_item.setOnClickListener(new Button.OnClickListener() {
+
+            public void onClick(View v){
+                Toast.makeText(MainActivity.this, "Add item clicked!", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
     private void calculate(){
         try {
