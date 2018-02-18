@@ -16,7 +16,11 @@ public class MainActivity extends AppCompatActivity {
     private Button compute, add_item, show_list;
     private EditText price_entry, quantity_entry, tax_entry, total_display, name_entry;
     private ArrayList<Item> items;
-    private double tax_rate;
+    private double tax_rate, runnin_total;
+    private final int ITEM_RETURN_CODE = 2;
+    private final String ITEMS = "ITEMS";
+    private final String TOTAL_ITEMS = "TOTAL_ITEMS";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         quantity_entry = findViewById(R.id.item_qty_entry);
         tax_entry = findViewById(R.id.item_tax_entry);
 
+
         total_display = findViewById(R.id.item_total_entry);
 
         // associate button objects to their xml and set listeners
@@ -43,6 +48,11 @@ public class MainActivity extends AppCompatActivity {
                     add_item.setEnabled(true);
                     show_list.setEnabled(true);
                     compute.setEnabled(false);
+                    price_entry.setEnabled(false);
+                    quantity_entry.setEnabled(false);
+                    tax_entry.setEnabled(false);
+                    total_display.setEnabled(false);
+                    name_entry.setEnabled(false);
                 }
             }
         });
@@ -54,9 +64,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // prepare  the items object to be sent over to the ListItems activity
                 // send object and open the ListItems Activity
-                Toast.makeText(MainActivity.this, "Show list clicked!", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(MainActivity.this, ListItemsActivity.class);
-                intent.putExtra("ITEMS", items);
+                intent.putExtra(ITEMS, items);
                 startActivity(intent);
 
             }
@@ -67,22 +76,28 @@ public class MainActivity extends AppCompatActivity {
         add_item.setOnClickListener(new Button.OnClickListener() {
 
             public void onClick(View v) {
-                Item item = new Item(); // temp value
-                // open the add item activity here
-                Toast.makeText(MainActivity.this, "Add item clicked!", Toast.LENGTH_SHORT).show();
-
-
-                //logic about opening activity above
-                tryCalculateFromReturn(item);
+                Intent intent = new Intent(MainActivity.this, ItemEntryActivity.class);
+                intent.putExtra(TOTAL_ITEMS, items.size());
+                startActivityForResult(intent, ITEM_RETURN_CODE);
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ITEM_RETURN_CODE && resultCode == RESULT_OK) {
+            Item item = ((ArrayList<Item>) data.getSerializableExtra(ITEMS)).get(0);
+            tryCalculateFromReturn(item);
+        }
     }
 
     // returns true if the calculation was successful
     private Boolean tryCalculate() {
         double total, price;
         int qty;
+        total = price = 0.0;
 
         try {
             // check for valid input ( kinda)
@@ -96,7 +111,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         total = (price * qty) + (price * qty * tax_rate) / 100;
-        total_display.setText(String.format("$%.2f", total));
+        runnin_total += total;
+        total_display.setText(String.format("$%.2f", runnin_total));
 
         //package data in to an item and store it.
 

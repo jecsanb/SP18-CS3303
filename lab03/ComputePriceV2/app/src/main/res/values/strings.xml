@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Compute Price V2</string>
+    <string name="number_of_item_s">Number of item(s): %d</string>
 </resources>
