@@ -1,7 +1,17 @@
+/*
+ * file.java
+ * Copyright (C) 2018 Jecsan Blanco <jblancolicano1@buffs.wtamu.edu>
+ *
+ * Distributed under terms of the MIT license.
+ *
+ *   @author Jecsan Blanco, Peterson Pham
+ *   @version 1.0
+ *   @since  02/18/2018
+ *   This activity allows the user to enter more items. The items are returned back to the main activity
+ *   for validation and storage whent he user hits the back button.
+ *   */
 package com.example.jb963962.computepricev2;
-
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;

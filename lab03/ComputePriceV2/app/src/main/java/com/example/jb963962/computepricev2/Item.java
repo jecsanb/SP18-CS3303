@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Created by jecsan on 2/13/18.
+ * This is a container that holds that data for an item.
  */
 
 public class Item implements Serializable {

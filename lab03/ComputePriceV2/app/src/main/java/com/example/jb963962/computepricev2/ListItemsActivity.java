@@ -1,9 +1,18 @@
+
+/*
+ * Compute Price V2
+ * Copyright (C) 2018 Jecsan Blanco <jblancolicano1@buffs.wtamu.edu>
+ *
+ *   @author Jecsan Blanco, Peterson Pham
+ *   @version 1.0
+ *   @since  02/17/2018
+ *
+ *   This activity generates an table with the items given by the main activity.
+ *   */
 package com.example.jb963962.computepricev2;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,11 +31,11 @@ public class ListItemsActivity extends AppCompatActivity {
 
 
         // get the items from the last activity;
-
         items = (ArrayList<Item>) getIntent().getSerializableExtra(ITEMS);
         TableLayout table = findViewById(R.id.item_table);
 
 
+        //Generate table
         for (Item item : items) {
             TableRow row = new TableRow(this);
 

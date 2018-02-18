@@ -1,5 +1,19 @@
-package com.example.jb963962.computepricev2;
+/*
+ * Compute Price V2
+ * Copyright (C) 2018 Jecsan Blanco <jblancolicano1@buffs.wtamu.edu>
+ * Distributed under terms of the MIT license.
+ *
+ *
+ *   @author Jecsan Blanco, Peterson Pham
+ *   @version 1.0
+ *   @since  02/17/2018
+ *
+ *   This app lets you enter an items name, price, quantity and a sales tax and then
+ *   it calculates the total. If there are more items to be enter the user can add
+ *   more items. The user is also able to list all the entered items.
+ **/
 
+package com.example.jb963962.computepricev2;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -16,7 +30,9 @@ public class MainActivity extends AppCompatActivity {
     private Button compute, add_item, show_list;
     private EditText price_entry, quantity_entry, tax_entry, total_display, name_entry;
     private ArrayList<Item> items;
-    private double tax_rate, runnin_total;
+
+    private double tax_rate, running_total;
+
     private final int ITEM_RETURN_CODE = 2;
     private final String ITEMS = "ITEMS";
     private final String TOTAL_ITEMS = "TOTAL_ITEMS";
@@ -35,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         price_entry = findViewById(R.id.item_price_entry);
         quantity_entry = findViewById(R.id.item_qty_entry);
         tax_entry = findViewById(R.id.item_tax_entry);
-
 
         total_display = findViewById(R.id.item_total_entry);
 
@@ -63,9 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(View v) {
                 // prepare  the items object to be sent over to the ListItems activity
-                // send object and open the ListItems Activity
                 Intent intent = new Intent(MainActivity.this, ListItemsActivity.class);
                 intent.putExtra(ITEMS, items);
+                // send object and open the ListItems Activity
                 startActivity(intent);
 
             }
@@ -97,8 +112,6 @@ public class MainActivity extends AppCompatActivity {
     private Boolean tryCalculate() {
         double total, price;
         int qty;
-        total = price = 0.0;
-
         try {
             // check for valid input ( kinda)
             price = Double.parseDouble(price_entry.getText().toString());
@@ -111,11 +124,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         total = (price * qty) + (price * qty * tax_rate) / 100;
-        runnin_total += total;
-        total_display.setText(String.format("$%.2f", runnin_total));
+        running_total += total;
+        total_display.setText(String.format("$%.2f", running_total));
 
-        //package data in to an item and store it.
-
+        //package data in to an item and store it for later use.
         addToItems(new Item(
                 name_entry.getText().toString(),
                 String.format("$%.2f", price),
