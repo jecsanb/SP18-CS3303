@@ -5,9 +5,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.jb963962.fragments.FragmentActivity">
     <fragment
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
+        <!-- need to add a name attribute here -->
+        <!--How to store a  layout on a folder so it is used
+        when the size of the screen changes.
+        To add an xml layout for landscape mode:
+            Right click on the res folder -> new folder
+            layout-land -->
 
 
     </fragment>
