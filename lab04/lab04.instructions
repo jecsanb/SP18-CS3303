@@ -1,0 +1,303 @@
+
+Programmin
+g
+Assignment #
+4
+due 0
+3
+/
+07
+/201
+8
+This project must be completed as a group assignment of two individuals to a group. Only the 
+designated group person need to submit the completed work and the grade for 
+the 
+group is 
+same for its members. We will use 
+the same group
+s
+as decided 
+in class 
+when working on 
+Programming Assignment 3. 
+In the comment section of the activity that gets loaded initially, you 
+need to tell who are the members of the group, the portion of the app coded by each member 
+and percentage o
+f grade each member should get based on the contribution to the project. This 
+is an honor code and you should only take credit on what you contribute. Both members must 
+agree to the contribution and the grade percentage stated in the comments before submit
+ting 
+the project for grading using git.
+Points will be deducted if this is not included.
+Develop an Android app for calculating the monthly payment given a loan amount, APR
+(annual percentage rate)
+, and number of years
+and the
+n display
+ing
+an
+amortization t
+able
+of
+the 
+loan payment
+. The user interface for the initial display is as given in Figure 1, 
+after entering the 
+amount, APR
+,
+and years
+,
+and 
+before clicking the 
+CALCULATE
+button is Figure 2. 
+Please not
+e 
+the fields that are required to be grayed initially. 
+After 
+click
+ing
+the
+CALCULATE
+button 
+your 
+monthly payment amount 
+is 
+visible and all three buttons are un
+-
+gray 
+as in Figure 
+3. Please note 
+that the amount, apr, 
+and 
+monthly 
+payment are formatted 
+display 
+when the 
+CALCULATE
+button 
+is clicked. When the 
+AMORTIZA
+TION TABLE
+button is clicked
+,
+the display 
+should be similar to 
+Figure 4. You need to calculat
+e
+the amortization table with double variables so that 
+your 
+last 
+payment 
+will result in a zero
+balance
+as
+in 
+F
+igure 5. 
+You need a vertical scroll bar for your tabl
+e. 
+You will use the triangular arrow on your AVD to navigate 
+back 
+to the main activity and
+your 
+display 
+must 
+now 
+have an additional 
+line telling the total interest you have paid during the loan 
+period as shown in Figure 6. When the reset button is clicked your app should clear all fields 
+and gray the fi
+e
+lds
+which are
+not required for calculating a 
+new 
+loan 
+payment 
+as in Figure 7. 
+The figures sh
+own below are using 
+the
+AVD Nexus 
+6
+API 2
+6
+.
+Name your project as 
+‘
+Loan 
+Calculator
+’
+and the save your work in a folder named Lab4
+. 
+App requirement: (1) E
+nter valid entries for amount, apr, and year, before
+the compute button is 
+clicked. 
+Can have toast 
+mess
+age 
+to tell if a field entry is missing but not required. 
+The fields that 
+need to be grayed 
+initially 
+as in Figure
+s
+1
+and 2
+. (2) When the COMPUTE button is clicked
+,
+other buttons must be ungra
+y
+ed
+as in Figure
+3. 
+(
+3
+) 
+When 
+the 
+AMORTIZATION TABLE
+button 
+is 
+clicked, 
+the display is as in Figure
+s
+4
+and 5
+.
+(
+4
+) 
+Need to use 
+the 
+arrow 
+triangular button on the 
+AVD to navigate back from the 
+amortization 
+table interface to the main interface and it must 
+display a
+n additional 
+line stating the total interest paid on 
+the loan amount 
+as in Figure 
+6
+. 
+(
+5
+) 
+When the RESE
+T button is clicked, all the fi
+e
+l
+d
+s
+must be cleared and 
+fields that need
+to be 
+grayed 
+are 
+as in Figure 7.
+(6) App must exit when the back arrow button on the 
+AVD 
+clicked. 
+The formula for monthly payment is
+:
+
+
+
+
+
+
+
+
+
+
+1
+)
+1
+(
+*
+months
+rate
+rate
+rate
+principal
+payment
+, rate = APR/100/number of payments in a 
+year, and months is 
+the 
+total number payments.
+F
+ind
+ing
+each row of the amortization table is as follows:
+Let principal = $2,000.00, APR = 6%, years = 5, and the payments are made monthly, then 
+using the above formula, monthly payment is 2000*(.06/12 + (.06/12)/((1+.06/12)^60
+-
+1) = 
+$38.67. Even though the monthly payment is fixed, interest and principal varies
+after a payment. 
+The monthly 
+payment amount is split into interest on the money owed and
+payment towards the 
+principle, and eventually the loan is reduced to $0.00. The 
+monthly payment 
+formula ensures 
+that after 60 payments, the loan balance will be $0.00. For the example loan amount = 
+$2,000.00, we have calculated the monthly payment = $38.6
+7. To determine how much of that 
+goes towards interest, we multiply the remaining balance $2,000.00 by the monthly interest rate: 
+2,000 * 0.06/12 = $10.00. The rest goes toward the principal and the loan balance is ($2,000 
+–
+(38.67 
+-
+10.00)) = $1,971.33). S
+o after the first payment, the remaining amount on the loan is 
+$1,971.33.  The second payment’s breakdown is similar except the principal has decreased. So 
+the portion of the payment going toward interest is now slightly less: $1,971.33 *.06/12 = $9.86 
+and
+loan balance is 1971.33
+-
+(38.67
+-
+9.86) = 1942.52. This process of calculating interest based 
+on the remaining balance continues until the loan is paid off. After 60 payments, the loan is fully 
+paid off.
+Save your work for this lab activity in a 
+f
+older name
+d
+Lab4, 
+You may name your 
+main activity as 
+‘Loan
+Calculator
+Activity,’ and second activity launched from the main activity as 
+‘
+Loan
+TableActivity.’
+Steps to turn in your assignment:
+(1)
+Copy the app folder Lab4 into the ~/Documents/cs3303/gitRep
+/XX99999 directory, 
+where XX999999 is your user_id.
+(2)
+cd into XX99999 directory and enter the command git add Lab4
+(3)
+enter the command git commit 
+–
+m “My lab 4 work mm/dd/yy”
+(4)
+enter the command git push origin master 
+(5)
+To test that the folder has been pushed succ
+essfully, go to your gitRepTest folder and 
+enter the command git pull. If you get back a copy of the folder Lab4 and its content then 
+your submission has been pushed successfully.  However, you need to verify that your 
+submission is 
+t
+hat you want your inst
+ructor to grade.
+
