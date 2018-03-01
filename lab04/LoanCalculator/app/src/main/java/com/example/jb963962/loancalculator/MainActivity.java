@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    //test
     private boolean tryToGetFields() {
         //Tries to  pull data from the editText returns true if it was successful
         try{
