@@ -9,20 +9,18 @@ This program calculates the monthly payment given a loan amount, APR
  */
 package com.example.jb963962.loancalculator;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button calculate_button, reset_button, amortization_button;
     private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_display;
-    private double  loan_amount,monthly_paymet, apr_rate, years;
+    private double principal, monthly_paymet, apr_rate, years;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         //id's attached to buttons
         calculate_button = findViewById(R.id.calculateButton);
         reset_button = findViewById(R.id.resetButton);
-        amortization_button  = findViewById(R.id.tableButton);
+        amortization_button = findViewById(R.id.tableButton);
 
         reset_button.setEnabled(false);
         amortization_button.setEnabled(false);
@@ -48,9 +46,10 @@ public class MainActivity extends AppCompatActivity {
 
         calculate_button.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
-                if (tryCalculate()) {
+                if (tryToGetFields()) {
                     reset_button.setEnabled(true);
                     amortization_button.setEnabled(true);
+                    calculateMonthlyPayment();
                 }
             }
         });
@@ -70,13 +69,15 @@ public class MainActivity extends AppCompatActivity {
 
 
     //test
-    private boolean tryCalculate() {
+    private boolean tryToGetFields() {
         //Tries to  pull data from the editText returns true if it was successful
-        try{
-            loan_amount = Double.parseDouble(loan_amount_entry.getText().toString());
+        try {
+            principal = Double.parseDouble(loan_amount_entry.getText().toString());
             apr_rate = Double.parseDouble(apr_entry.getText().toString());
-            years =  Integer.parseInt(loan_term_entry.getText().toString());
-        }catch(NumberFormatException e){
+            years = Integer.parseInt(loan_term_entry.getText().toString());
+            if (years * apr_rate * years * principal <= 0)
+                throw new NumberFormatException("Zero or negative numbers given");
+        } catch (NumberFormatException e) {
             Toast.makeText(this, "Invalid Input!", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -85,19 +86,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //todo write a way to pass the needed data to another activity that builds the scrollable table
-    private void openAmortizationTable(){
+    private void openAmortizationTable() {
     }
 
-    private double calculateMonthlyPayment(double principal , double apr, int years){
-        int months = 12;
-        int monthsInYears = years*months;
-        double rate = (apr/100)/months; // why is it under 12?
-        return principal*(rate + ( rate /( Math.pow( 1 + rate,monthsInYears) -1 ) ) );
+    private void calculateMonthlyPayment() {
+        if (tryToGetFields()) {
+            int months = 12;
+            double monthsInYears = years * months;
+            double rate = (apr_rate / 100) / months; // why is it under 12?
+            monthly_paymet = principal * (rate + (rate / (Math.pow(1 + rate, monthsInYears) - 1)));
+        }
 
     }
-    private void resetAllFields(){
-        EditText fields[] = {loan_term_entry,apr_entry,loan_amount_entry,loan_payment_display};
-        for( EditText e : fields){
+
+    private void resetAllFields() {
+        EditText fields[] = {loan_term_entry, apr_entry, loan_amount_entry, loan_payment_display};
+        for (EditText e : fields) {
             e.setText("");
         }
     }
