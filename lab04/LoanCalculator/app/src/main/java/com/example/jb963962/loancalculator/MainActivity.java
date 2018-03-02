@@ -12,6 +12,7 @@ package com.example.jb963962.loancalculator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -20,31 +21,54 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     private Button calculate_button, reset_button, amortization_button;
-    private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_entry;
+    private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_display;
     private double  loan_amount,monthly_paymet, apr_rate, years;
-    private TextView display_text;
-    private EditText entry1,entry2,entry3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //todo wire buttons
 
-        //todo  wire  editText
+        //id's attached to editTexts
+        loan_amount_entry = findViewById(R.id.loan_entry);
+        apr_entry = findViewById(R.id.apr_entry);
+        loan_term_entry = findViewById(R.id.term_entry);
+        loan_payment_display = findViewById(R.id.payment_entry);
 
-        //todo wire the button listeners
+
+        //id's attached to buttons
+        calculate_button = findViewById(R.id.calculateButton);
+        reset_button = findViewById(R.id.resetButton);
+        amortization_button  = findViewById(R.id.tableButton);
+
+
+        //listeners for the buttons.
+
+        calculate_button.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+                if (tryCalculate()) {
+                }
+            }
+        });
+        reset_button.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            }
+        });
+        amortization_button.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View v) {
+            }
+        });
 
     }
 
 
     //test
-    private boolean tryToGetFields() {
+    private boolean tryCalculate() {
         //Tries to  pull data from the editText returns true if it was successful
         try{
-            loan_amount = Double.parseDouble(entry1.getText().toString());
-            apr_rate = Double.parseDouble(entry2.getText().toString());
-            years =  Integer.parseInt(entry3.getText().toString());
+            loan_amount = Double.parseDouble(loan_amount_entry.getText().toString());
+            apr_rate = Double.parseDouble(apr_entry.getText().toString());
+            years =  Integer.parseInt(loan_term_entry.getText().toString());
         }catch(NumberFormatException e){
             Toast.makeText(this, "Invalid Input!", Toast.LENGTH_SHORT).show();
             return false;
