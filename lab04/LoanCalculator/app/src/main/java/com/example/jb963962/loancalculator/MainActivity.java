@@ -41,17 +41,24 @@ public class MainActivity extends AppCompatActivity {
         reset_button = findViewById(R.id.resetButton);
         amortization_button  = findViewById(R.id.tableButton);
 
+        reset_button.setEnabled(false);
+        amortization_button.setEnabled(false);
 
         //listeners for the buttons.
 
         calculate_button.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
                 if (tryCalculate()) {
+                    reset_button.setEnabled(true);
+                    amortization_button.setEnabled(true);
                 }
             }
         });
         reset_button.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) {
+                resetAllFields();
+                reset_button.setEnabled(false);
+                amortization_button.setEnabled(false);
             }
         });
         amortization_button.setOnClickListener(new Button.OnClickListener() {
@@ -87,6 +94,12 @@ public class MainActivity extends AppCompatActivity {
         double rate = (apr/100)/months; // why is it under 12?
         return principal*(rate + ( rate /( Math.pow( 1 + rate,monthsInYears) -1 ) ) );
 
+    }
+    private void resetAllFields(){
+        EditText fields[] = {loan_term_entry,apr_entry,loan_amount_entry,loan_payment_display};
+        for( EditText e : fields){
+            e.setText("");
+        }
     }
 
 
