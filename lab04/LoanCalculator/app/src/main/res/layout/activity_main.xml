@@ -7,33 +7,121 @@
     android:layout_height="match_parent"
     tools:context="com.example.jb963962.loancalculator.MainActivity">
 
-
-    <EditText
-        android:hint="entry1"
-        android:id="@+id/entry1"
-        android:text="1000b"
-        android:layout_width="200sp"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:hint="entry2"
-        android:text="6"
-        android:id="@+id/entry2"
-        android:layout_width="200sp"
-        android:layout_height="wrap_content" />
-    <EditText
-        android:hint="entry3"
-        android:text="2"
-        android:id="@+id/entry3"
-        android:layout_width="200sp"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:id="@+id/display"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:paddingLeft="5dp">
 
+        <TextView
+            android:text="Enter your loan amount"
+            android:textStyle="bold"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+        <EditText
+            android:hint="entry1"
+            android:id="@+id/entry1"
+            android:text="1000"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/darker_gray"
+            />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp">
+
+        <TextView
+            android:text="Enter your APR"
+            android:textStyle="bold"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+        <EditText
+            android:hint="entry2"
+            android:text="6"
+            android:id="@+id/entry2"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/darker_gray" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp">
+
+        <TextView
+            android:text="Enter your loan term (years)"
+            android:textStyle="bold"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+        <EditText
+            android:hint="entry3"
+            android:text="2"
+            android:id="@+id/entry3"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/darker_gray" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp">
+
+        <TextView
+            android:text="Your loan payment"
+            android:textStyle="bold"
+            android:layout_width="200sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/transparent"
+            />
+
+        <EditText
+            android:hint="entry4"
+            android:text="2"
+            android:id="@+id/entry4"
+            android:layout_width="150sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/darker_gray" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="30dp">
+
+        <Button
+            android:id="@+id/calButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CALCULATE"
+            />
+
+        <Button
+            android:id="@+id/resButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RESET"/>
+
+        <Button
+            android:id="@+id/tableButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="AMORITIZATION TABLE"/>
+
+    </LinearLayout>
 </LinearLayout>
