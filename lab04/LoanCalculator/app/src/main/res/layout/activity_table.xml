@@ -1,149 +1,45 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.jb963962.loancalculator.TableActivity">
 
-
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp">
+        android:orientation="vertical">
 
         <TextView
+            android:id="@+id/loan_amount_display"
+            android:paddingTop="10sp"
+            android:paddingBottom="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your loan amount " />
+            android:layout_weight="1"
+            android:text="@string/loan_amount_str" />
 
         <TextView
-            android:id="@+id/tAmount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp">
-
-        <TextView
+            android:id="@+id/payments_display"
+            android:paddingBottom="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your number of payments " />
+            android:layout_weight="1"
+            android:text="@string/number_of_payments" />
 
         <TextView
-            android:id="@+id/tPayment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp">
-
-        <TextView
+            android:id="@+id/table_label"
+            android:paddingBottom="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="Amortization Table" />
 
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </TableLayout>
     </LinearLayout>
-
-    <TableLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp">
-
-        <!-- Remove the android:text to remove inital text.
-             It is only used for visual aid -->
-
-        <TableRow>
-
-            <TextView
-                android:id="@+id/tNumber"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="5dip"
-                android:text="1" />
-
-            <TextView
-                android:id="@+id/col1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:text="$1,924" />
-
-            <TextView
-                android:id="@+id/col2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:text="$831.05" />
-
-            <TextView
-                android:id="@+id/col3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:text="$360.85" />
-
-            <TextView
-                android:id="@+id/lastcol"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="30dip"
-                android:text="$35,523.00" />
-        </TableRow>
-
-        <!--Dummy tablerow code for visual aid
-            Remove if needed.                  -->
-
-        <TableRow>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:padding="5dip"
-                android:text="42" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:text="$1,232" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:text="5252.05" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="5dip"
-                android:text="33.85" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="30dip"
-                android:text="$35,523.00" />
-        </TableRow>
-
-        <!--End of dummy tablerow(s).-->
-
-    </TableLayout>
-
-</LinearLayout>
+</ScrollView>

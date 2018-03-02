@@ -21,7 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     private Button calculate_button, reset_button, amortization_button;
     private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_display;
-    private double principal, monthly_paymet, apr_rate, years;
+    private double principal, monthly_payment, apr_rate, years;
+    public static final String  CALCULATION_DATA = "DATA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                 if (tryToGetFields()) {
                     reset_button.setEnabled(true);
                     amortization_button.setEnabled(true);
-                    calculateMonthlyPayment();
+                    monthly_payment =  calculateMonthlyPayment(principal,apr_rate,years);
                     formatFields();
                 }
             }
@@ -63,16 +64,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         amortization_button.setOnClickListener(new Button.OnClickListener() {
-            Intent intent = new Intent(MainActivity.this,TableActivity.class);
-
             public void onClick(View v) {
+                openAmortizationTable();
             }
         });
 
     }
 
 
-    //test
     private boolean tryToGetFields() {
         //Tries to  pull data from the editText returns true if it was successful
         try {
@@ -91,27 +90,29 @@ public class MainActivity extends AppCompatActivity {
 
     //todo write a way to pass the needed data to another activity that builds the scrollable table
     private void openAmortizationTable() {
+        double fieldNumbers[] = {principal,monthly_payment,apr_rate};
+        Intent intent = new Intent(this, TableActivity.class);
+        intent.putExtra(CALCULATION_DATA,fieldNumbers);
+        startActivity(intent);
     }
 
-    private void calculateMonthlyPayment() {
-        if (tryToGetFields()) {
-            int months = 12;
-            double monthsInYears = years * months;
-            double rate = (apr_rate / 100) / months; // why is it under 12?
-            monthly_paymet = principal * (rate + (rate / (Math.pow(1 + rate, monthsInYears) - 1)));
-        }
+    private static double calculateMonthlyPayment(double principal,double apr_rate,double years) {
+        int months = 12;
+        double monthsInYears = years * months;
+        double rate = (apr_rate / 100) / months; // why is it under 12?
+        return (principal * (rate + (rate / (Math.pow(1 + rate, monthsInYears) - 1))));
 
     }
 
     private  void formatFields(){
-        EditText fields[] = {loan_amount_entry,loan_term_entry,loan_payment_display,apr_entry};
-        Double fieldNumbers[] ={principal,years,monthly_paymet,apr_rate};
+        EditText fields[] = {loan_amount_entry,loan_payment_display,apr_entry};
+        Double fieldNumbers[] ={principal,monthly_payment,apr_rate};
         int i = 0;
         while( i < fields.length -1) {
-            fields[i].setText(String.format("$%,.2f", fieldNumbers[i]));
+            fields[i].setText(getString(R.string.money, fieldNumbers[i]));
             i++;
         }
-        fields[i].setText(String.format("%.2f",fieldNumbers[i])+ "%");
+        fields[i].setText(String.format("%.2f",fieldNumbers[i]));
     }
 
     private void resetAllFields() {
