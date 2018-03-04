@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 public class TableActivity extends AppCompatActivity {
     private TextView principal_view, payments_view;
+    private final String moneyFormat = "$%,.2f";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,10 +47,10 @@ public class TableActivity extends AppCompatActivity {
             principal = principal - col4calc;
 
             month.setText(Integer.toString(i));
-            mpay.setText(String.format("$%.2f", monthly));
-            col3.setText(String.format("$%.2f", col3calc));
-            col4.setText(String.format("$%.2f", col4calc));
-            amt.setText(String.format("$%.2f", principal));
+            mpay.setText(String.format(moneyFormat, monthly));
+            col3.setText(String.format(moneyFormat, col3calc));
+            col4.setText(String.format(moneyFormat, col4calc));
+            amt.setText(String.format(moneyFormat, principal));
 
             month.setPadding(10, 0, 10, 0);
             mpay.setPadding(10, 0, 10, 0);
