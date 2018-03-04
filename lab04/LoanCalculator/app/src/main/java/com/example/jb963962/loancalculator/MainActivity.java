@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
 
     //todo write a way to pass the needed data to another activity that builds the scrollable table
     private void openAmortizationTable() {
-        double fieldNumbers[] = {principal,monthly_payment,apr_rate};
+        double fieldNumbers[] = {principal,monthly_payment,apr_rate,years};
         Intent intent = new Intent(this, TableActivity.class);
         intent.putExtra(CALCULATION_DATA,fieldNumbers);
         startActivity(intent);
