@@ -1,9 +1,8 @@
 package com.example.jb963962.loancalculator;
 
-import android.content.res.Resources;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -22,8 +21,9 @@ public class TableActivity extends AppCompatActivity {
         double apr = values[2];
         double monthly = values[1];
         double years = values[3];
-        double col3calc;
-        double col4calc;
+        double payment_to_principalcalc;
+        double payment_to_interestcalc;
+        double total_interest = 0;
 
         principal_view = findViewById(R.id.loan_amount_display);
         payments_view = findViewById(R.id.payments_display);
@@ -37,36 +37,43 @@ public class TableActivity extends AppCompatActivity {
             TableRow row = new TableRow(this);
 
             TextView month = new TextView(this);
-            TextView mpay = new TextView(this);
-            TextView col3 = new TextView(this);
-            TextView col4 = new TextView(this);
-            TextView amt = new TextView(this);
+            TextView monthly_payment = new TextView(this);
+            TextView payment_to_principal = new TextView(this);
+            TextView payment_to_interest = new TextView(this);
 
-            col3calc = principal * (apr * .01) / 12;
-            col4calc = monthly - col3calc;
-            principal = principal - col4calc;
+
+            TextView amnt_left = new TextView(this);
+
+             payment_to_interestcalc = principal * (apr * .01) / 12;
+             payment_to_principalcalc = monthly - payment_to_interestcalc;
+
+            principal = principal - payment_to_principalcalc;
+            total_interest += payment_to_interestcalc;
 
             month.setText(Integer.toString(i));
-            mpay.setText(String.format(moneyFormat, monthly));
-            col3.setText(String.format(moneyFormat, col3calc));
-            col4.setText(String.format(moneyFormat, col4calc));
-            amt.setText(String.format(moneyFormat, principal));
+            monthly_payment.setText(String.format(moneyFormat, monthly));
+            payment_to_principal.setText(String.format(moneyFormat, payment_to_principalcalc));
+            payment_to_interest.setText(String.format(moneyFormat, payment_to_interestcalc));
+            amnt_left.setText(String.format(moneyFormat, principal));
 
             month.setPadding(10, 0, 10, 0);
-            mpay.setPadding(10, 0, 10, 0);
-            col4.setPadding(10, 0, 10, 0);
-            col3.setPadding(10, 0, 10, 0);
-            amt.setPadding(10, 0, 10, 0);
+            monthly_payment.setPadding(10, 0, 10, 0);
+            payment_to_interest.setPadding(10, 0, 10, 0);
+            payment_to_principal.setPadding(10, 0, 10, 0);
+            amnt_left.setPadding(10, 0, 10, 0);
 
 
             row.addView(month);
-            row.addView(mpay);
-            row.addView(col3);
-            row.addView(col4);
-            row.addView(amt);
+            row.addView(monthly_payment);
+            row.addView(payment_to_principal);
+            row.addView(payment_to_interest);
+            row.addView(amnt_left);
 
             table.addView(row);
         }
 
+        Intent result = new Intent();
+        result.putExtra(MainActivity.CALCULATION_DATA,String.format(moneyFormat,total_interest));
+        setResult(RESULT_OK,result);
     }
 }

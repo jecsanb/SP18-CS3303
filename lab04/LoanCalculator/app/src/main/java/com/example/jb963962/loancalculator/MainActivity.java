@@ -19,8 +19,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final int RETURN_DATA_REQEST = 0 ;
     private Button calculate_button, reset_button, amortization_button;
-    private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_display;
+    private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_display,total_intrest_display;
     private double principal, monthly_payment, apr_rate, years;
     public static final String CALCULATION_DATA = "DATA";
 
@@ -34,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         apr_entry = findViewById(R.id.apr_entry);
         loan_term_entry = findViewById(R.id.term_entry);
         loan_payment_display = findViewById(R.id.payment_entry);
+        total_intrest_display = findViewById(R.id.total_interest);
+
 
         //id's attached to buttons
         calculate_button = findViewById(R.id.calculateButton);
@@ -92,7 +95,18 @@ public class MainActivity extends AppCompatActivity {
         double fieldNumbers[] = {principal, monthly_payment, apr_rate, years};
         Intent intent = new Intent(this, TableActivity.class);
         intent.putExtra(CALCULATION_DATA, fieldNumbers);
-        startActivity(intent);
+        startActivityForResult(intent,RETURN_DATA_REQEST); }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        if (requestCode == RETURN_DATA_REQEST) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                total_intrest_display.setText(getString(R.string.interest_paid,data.getStringExtra(CALCULATION_DATA)));
+            }
+
+        }
     }
 
     private static double calculateMonthlyPayment(double principal, double apr_rate, double years) {
