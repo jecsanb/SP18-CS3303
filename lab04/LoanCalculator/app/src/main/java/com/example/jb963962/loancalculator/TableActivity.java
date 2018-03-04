@@ -17,18 +17,18 @@ public class TableActivity extends AppCompatActivity {
         setContentView(R.layout.activity_table);
         // 1. Principal, 2.Years 4. Apr
         double values[] = getIntent().getDoubleArrayExtra(MainActivity.CALCULATION_DATA);
-
-        principal_view = findViewById(R.id.loan_amount_display);
-        payments_view = findViewById(R.id.payments_display);
-        principal_view.setText(getString(R.string.loan_amount_str,values[0]));
-
-
         double principal = values[0];
         double apr       = values[2];
         double monthly   = values[1];
         double years     = values[3];
         double col3calc;
         double col4calc;
+
+        principal_view = findViewById(R.id.loan_amount_display);
+        payments_view = findViewById(R.id.payments_display);
+        principal_view.setText(getString(R.string.loan_amount_str,values[0]));
+        payments_view.setText(getString(R.string.number_of_payments,12*years));
+
 
 
         TableLayout table = findViewById(R.id.table);
@@ -47,10 +47,10 @@ public class TableActivity extends AppCompatActivity {
             principal = principal - col4calc;
 
             month.setText(Integer.toString(i));
-            mpay.setText(String.format("%.2f", monthly  ));
-            col3.setText(String.format("%.2f", col3calc ));
-            col4.setText(String.format("%.2f", col4calc ));
-            amt.setText( String.format("%.2f", principal));
+            mpay.setText(String.format("$%.2f", monthly  ));
+            col3.setText(String.format("$%.2f", col3calc ));
+            col4.setText(String.format("$%.2f", col4calc ));
+            amt.setText( String.format("$%.2f", principal));
 
             month.setPadding(10,0,10,0);
             mpay.setPadding( 10,0,10,0);
