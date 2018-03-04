@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Loan  Calculator</string>
+    <string name="loan_amount">Your loan amount</string>
+    <string name="loan_amount_str">Your loan amount: $%,.2f</string>
+    <string name="number_of_payments">Your number of payments: %d</string>
+    <string name="money">$%,.2f</string>
 </resources>
