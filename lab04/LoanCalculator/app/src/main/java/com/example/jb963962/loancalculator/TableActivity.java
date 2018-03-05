@@ -38,16 +38,16 @@ public class TableActivity extends AppCompatActivity {
 
         TableLayout table = findViewById(R.id.table);
 
+        TextView month,monthly_payment,payment_principal,payment_interest,amnt_left;
+
         for (int i = 1; i <= 12 * years; ++i) {
             TableRow row = new TableRow(this);
 
-            TextView month = new TextView(this);
-            TextView monthly_payment = new TextView(this);
-            TextView payment_principal = new TextView(this);
-            TextView payment_interest = new TextView(this);
-
-
-            TextView amnt_left = new TextView(this);
+             month = new TextView(this);
+             monthly_payment = new TextView(this);
+             payment_principal = new TextView(this);
+             payment_interest = new TextView(this);
+             amnt_left = new TextView(this);
 
              payment_interestcalc = principal * (apr * .01) / 12;
              payment_principalcalc = monthly - payment_interestcalc;
@@ -55,16 +55,14 @@ public class TableActivity extends AppCompatActivity {
             principal = principal - payment_principalcalc;
             total_interest += payment_interestcalc;
 
-            month.setText(Integer.toString(i));
-            monthly_payment.setText(String.format(moneyFormat, monthly));
-            payment_principal.setText(String.format(moneyFormat, payment_principalcalc));
-            payment_interest.setText(String.format(moneyFormat, payment_interestcalc));
-            amnt_left.setText(String.format(moneyFormat, principal));
-            TextView entries[] = { month,monthly_payment,payment_principal,payment_interest,amnt_left};
 
-            for(TextView t : entries) {
-                t.setPadding(10, 0, 10, 0);
-                row.addView(t);
+            TextView tviews[] = { month,monthly_payment,payment_principal,payment_interest,amnt_left};
+            String tvalues[] = {Integer.toString(i),String.format(moneyFormat, monthly),String.format(moneyFormat, payment_principalcalc),
+                String.format(moneyFormat, payment_interestcalc),String.format(moneyFormat, principal)};
+            for(int j = 0; j < tviews.length; j++) {
+                tviews[j].setText(tvalues[j]);
+                tviews[j].setPadding(10, 0, 10, 0);
+                row.addView(tviews[j]);
             }
             table.addView(row);
         }
