@@ -7,6 +7,7 @@ package com.example.jb963962.loancalculator;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -59,20 +60,12 @@ public class TableActivity extends AppCompatActivity {
             payment_principal.setText(String.format(moneyFormat, payment_principalcalc));
             payment_interest.setText(String.format(moneyFormat, payment_interestcalc));
             amnt_left.setText(String.format(moneyFormat, principal));
+            TextView entries[] = { month,monthly_payment,payment_principal,payment_interest,amnt_left};
 
-            month.setPadding(10, 0, 10, 0);
-            monthly_payment.setPadding(10, 0, 10, 0);
-            payment_interest.setPadding(10, 0, 10, 0);
-            payment_principal.setPadding(10, 0, 10, 0);
-            amnt_left.setPadding(10, 0, 10, 0);
-
-
-            row.addView(month);
-            row.addView(monthly_payment);
-            row.addView(payment_principal);
-            row.addView(payment_interest);
-            row.addView(amnt_left);
-
+            for(TextView t : entries) {
+                t.setPadding(10, 0, 10, 0);
+                row.addView(t);
+            }
             table.addView(row);
         }
 
