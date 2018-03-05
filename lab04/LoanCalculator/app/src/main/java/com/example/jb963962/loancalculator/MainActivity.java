@@ -5,7 +5,7 @@ Version: 02 / 28 / 2018
 
 This program calculates the monthly payment given a loan amount, APR
 (annual percentage rate), and number of years. This program also displays
- an amortization of the loan.
+ an amortization of the loan and amount paid in interest.
  */
 package com.example.jb963962.loancalculator;
 
@@ -19,9 +19,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private static final int RETURN_DATA_REQEST = 0 ;
+    private static final int RETURN_DATA_REQUEST = 0 ;
     private Button calculate_button, reset_button, amortization_button;
-    private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_display,total_intrest_display;
+    private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_display,total_interest_display;
     private double principal, monthly_payment, apr_rate, years;
     public static final String CALCULATION_DATA = "DATA";
 
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         apr_entry = findViewById(R.id.apr_entry);
         loan_term_entry = findViewById(R.id.term_entry);
         loan_payment_display = findViewById(R.id.payment_entry);
-        total_intrest_display = findViewById(R.id.total_interest);
+        total_interest_display = findViewById(R.id.total_interest);
 
 
         //id's attached to buttons
@@ -95,15 +95,15 @@ public class MainActivity extends AppCompatActivity {
         double fieldNumbers[] = {principal, monthly_payment, apr_rate, years};
         Intent intent = new Intent(this, TableActivity.class);
         intent.putExtra(CALCULATION_DATA, fieldNumbers);
-        startActivityForResult(intent,RETURN_DATA_REQEST); }
+        startActivityForResult(intent,RETURN_DATA_REQUEST); }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
-        if (requestCode == RETURN_DATA_REQEST) {
+        if (requestCode == RETURN_DATA_REQUEST) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                total_intrest_display.setText(getString(R.string.interest_paid,data.getStringExtra(CALCULATION_DATA)));
+                total_interest_display.setText(getString(R.string.interest_paid,data.getStringExtra(CALCULATION_DATA)));
             }
 
         }
@@ -116,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
         return (principal * (rate + (rate / (Math.pow(1 + rate, monthsInYears) - 1))));
 
     }
-
+    //sets up the files to have the write money and percent formatting
     private void formatFields() {
         EditText fields[] = {loan_amount_entry, loan_payment_display, apr_entry};
         Double fieldNumbers[] = {principal, monthly_payment, apr_rate};

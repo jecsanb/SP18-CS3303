@@ -2,6 +2,8 @@ package com.example.jb963962.fragments;
 
 import android.app.FragmentTransaction;
 import android.app.ListFragment;
+import android.content.Intent;
+import android.telecom.Call;
 
 /**
  * Created by jb963962 on 2/21/18.
@@ -26,6 +28,9 @@ public class FriendFragment extends ListFragment {
                 ft.replace(R.id.details,detailsFragment);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.commit();
+            }else{
+                Intent intent = new Intent();
+                intent.setClass(getActivity(),DetailsActivity.class);
             }
 
 
