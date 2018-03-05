@@ -135,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
         for (EditText e : fields) {
             e.setText("");
         }
+        total_interest_display.setText("");
     }
 
 
