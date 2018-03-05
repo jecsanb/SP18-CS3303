@@ -15,13 +15,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final int RETURN_DATA_REQUEST = 0 ;
     private Button calculate_button, reset_button, amortization_button;
-    private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_display,total_interest_display;
+    private EditText loan_amount_entry, apr_entry, loan_term_entry, loan_payment_display;
+    private TextView total_interest_display;
     private double principal, monthly_payment, apr_rate, years;
     public static final String CALCULATION_DATA = "DATA";
 
