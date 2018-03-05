@@ -1,4 +1,8 @@
 package com.example.jb963962.loancalculator;
+/*
+
+    Generates a scrollable table with all payments that need to be made.
+ */
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
