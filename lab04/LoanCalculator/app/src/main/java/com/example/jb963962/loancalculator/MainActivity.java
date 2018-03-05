@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
             fields[i].setText(getString(R.string.money, fieldNumbers[i]));
             i++;
         }
-        fields[i].setText(String.format("%.2f", fieldNumbers[i]));
+        fields[i].setText(String.format("%.2f", fieldNumbers[i]) + "%");
     }
 
     private void resetAllFields() {
