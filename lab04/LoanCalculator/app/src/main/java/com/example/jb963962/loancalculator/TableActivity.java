@@ -25,8 +25,8 @@ public class TableActivity extends AppCompatActivity {
         double apr = values[2];
         double monthly = values[1];
         double years = values[3];
-        double payment_to_principalcalc;
-        double payment_to_interestcalc;
+        double payment_principalcalc;
+        double payment_interestcalc;
         double total_interest = 0;
 
         principal_view = findViewById(R.id.loan_amount_display);
@@ -42,35 +42,35 @@ public class TableActivity extends AppCompatActivity {
 
             TextView month = new TextView(this);
             TextView monthly_payment = new TextView(this);
-            TextView payment_to_principal = new TextView(this);
-            TextView payment_to_interest = new TextView(this);
+            TextView payment_principal = new TextView(this);
+            TextView payment_interest = new TextView(this);
 
 
             TextView amnt_left = new TextView(this);
 
-             payment_to_interestcalc = principal * (apr * .01) / 12;
-             payment_to_principalcalc = monthly - payment_to_interestcalc;
+             payment_interestcalc = principal * (apr * .01) / 12;
+             payment_principalcalc = monthly - payment_interestcalc;
 
-            principal = principal - payment_to_principalcalc;
-            total_interest += payment_to_interestcalc;
+            principal = principal - payment_principalcalc;
+            total_interest += payment_interestcalc;
 
             month.setText(Integer.toString(i));
             monthly_payment.setText(String.format(moneyFormat, monthly));
-            payment_to_principal.setText(String.format(moneyFormat, payment_to_principalcalc));
-            payment_to_interest.setText(String.format(moneyFormat, payment_to_interestcalc));
+            payment_principal.setText(String.format(moneyFormat, payment_principalcalc));
+            payment_interest.setText(String.format(moneyFormat, payment_interestcalc));
             amnt_left.setText(String.format(moneyFormat, principal));
 
             month.setPadding(10, 0, 10, 0);
             monthly_payment.setPadding(10, 0, 10, 0);
-            payment_to_interest.setPadding(10, 0, 10, 0);
-            payment_to_principal.setPadding(10, 0, 10, 0);
+            payment_interest.setPadding(10, 0, 10, 0);
+            payment_principal.setPadding(10, 0, 10, 0);
             amnt_left.setPadding(10, 0, 10, 0);
 
 
             row.addView(month);
             row.addView(monthly_payment);
-            row.addView(payment_to_principal);
-            row.addView(payment_to_interest);
+            row.addView(payment_principal);
+            row.addView(payment_interest);
             row.addView(amnt_left);
 
             table.addView(row);
