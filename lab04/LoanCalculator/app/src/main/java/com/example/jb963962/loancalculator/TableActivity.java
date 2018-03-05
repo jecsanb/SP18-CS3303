@@ -1,13 +1,12 @@
 package com.example.jb963962.loancalculator;
 /*
-
     Generates a scrollable table with all payments that need to be made.
+    The table generated is an  amortization table.
  */
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -20,15 +19,17 @@ public class TableActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_table);
-        // 1. Principal, 2.Years 4. Apr
+        //values: 0.principal, 1.monthly_payment, 2.apr_rate, 3.years
         double values[] = getIntent().getDoubleArrayExtra(MainActivity.CALCULATION_DATA);
         double principal = values[0];
-        double apr = values[2];
         double monthly = values[1];
+        double apr = values[2];
         double years = values[3];
-        double payment_principalcalc;
-        double payment_interestcalc;
+
+        double payment_principalcalc,payment_interestcalc;
         double total_interest = 0;
+
+        final String  MONTHLY_PAYMENT = String.format(moneyFormat, monthly);
 
         principal_view = findViewById(R.id.loan_amount_display);
         payments_view = findViewById(R.id.payments_display);
@@ -57,12 +58,13 @@ public class TableActivity extends AppCompatActivity {
 
 
             TextView tviews[] = { month,monthly_payment,payment_principal,payment_interest,amnt_left};
-            String tvalues[] = {Integer.toString(i),String.format(moneyFormat, monthly),String.format(moneyFormat, payment_principalcalc),
+            String tvalues[] = {Integer.toString(i),MONTHLY_PAYMENT,String.format(moneyFormat, payment_principalcalc),
                 String.format(moneyFormat, payment_interestcalc),String.format(moneyFormat, principal)};
-            for(int j = 0; j < tviews.length; j++) {
-                tviews[j].setText(tvalues[j]);
-                tviews[j].setPadding(10, 0, 10, 0);
-                row.addView(tviews[j]);
+            //adds the views to the rows and the data to the views.
+            for(int view = 0; view < tviews.length; view++) {
+                tviews[view].setText(tvalues[view]);
+                tviews[view].setPadding(10, 0, 10, 0);
+                row.addView(tviews[view]);
             }
             table.addView(row);
         }
