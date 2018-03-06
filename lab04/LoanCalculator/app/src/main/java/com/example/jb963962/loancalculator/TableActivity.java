@@ -5,6 +5,7 @@ package com.example.jb963962.loancalculator;
  */
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TableLayout;
@@ -65,6 +66,11 @@ public class TableActivity extends AppCompatActivity {
                 tviews[view].setText(tvalues[view]);
                 tviews[view].setPadding(10, 0, 10, 0);
                 row.addView(tviews[view]);
+                if(i % 2 == 1){
+                    tviews[view].setTextColor(Color.WHITE);
+                    tviews[view].setBackgroundColor(Color.GRAY);
+
+                }
             }
             table.addView(row);
         }
