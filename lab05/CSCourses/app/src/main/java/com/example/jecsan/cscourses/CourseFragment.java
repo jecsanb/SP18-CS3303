@@ -16,7 +16,7 @@ import android.widget.ListView;
  *  otherwise only the list view using one fragment
  */
 
-public class FriendFragment extends ListFragment {
+public class CourseFragment extends ListFragment {
     boolean mDualPane;
     int position = 0;
 
@@ -83,7 +83,7 @@ public class FriendFragment extends ListFragment {
         else {
             // otherwise we will launch a new activity to display the selection
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), DetailsActivity.class);
+                intent.setClass(getActivity(), CourseActivity.class);
                 intent.putExtra("index", index);
                 startActivity(intent);
          }
