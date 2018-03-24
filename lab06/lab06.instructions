@@ -1,0 +1,30 @@
+Write an app to compute the Dow Jones Industrial Average (DJIA). Your app should compute the
+average for the previous business day closing time of the day you run the program and the time taken
+for the computation. The component stocks which are included in the DJIA are decided by editorial
+board of the Wall Street Journal (WSJ). As of now, there are 30 company stocks and their symbols are:
+"AXP", "AAPL", "BA", "CAT", "CVX", "CSCO", "KO", "DIS", "DWDP", "XOM", "GE", "GS", "HD", "IBM",
+"INTC", "JNJ", "JPM", "MCD", "MRK", "MMM", "MSFT", "NKE", "PFE", "PG", "TRV", "UTX", "UNH", "VZ",
+"V", "WMT".
+DJIA is a very simple average calculated as the sum of the price of the 30 stock symbols divided by a
+constant. The value of the constant (divisor) is decided by the WSJ board which changes from time to
+time and as on now its value is 0.14523396877348.
+Your program must use a string url (uniform resource locator) to get the previous day stock price. For
+example, the URL
+https://query1.finance.yahoo.com/v8/finance/chart/AAPLinterval=2m
+will download the price of AAPL symbol as a String. You need to download and retrieve the prices as a
+background thread using a class that extends the AsyncTask class. You need a progress bar which
+displays the progress of the computation (need to have 30 stick increments). The progress bar must
+appear only when the computation begins and disappear when the computation ends. The initial display
+should be as shown in Figure 1. When the COMPUTE button is clicked, the progress bar appears, shows
+30 progress ticks, and disappear as soon as the average is displayed. A sample display while the
+computation is in progress is given in Figure 2. When the computation is complete, you need to display
+the average and the time taken for the computation rounded to two decimal precision with comma
+separation as needed. A sample display is given in Figure 3. The figures displayed use an AVD for Nexus 6
+having API 26. If you work on the project from your home computer, you need to run the app on a lab
+computer before submitting using git. If I cannot open and run the app you pushed into the git
+repository, your assignment may not get graded.
+Project Requirement: (1) Your app project folder must be named as Lab6. (2) Your output for DJIA must
+use comma separation and rounded to two decimal precision, and time taken in seconds rounded to
+two decimal precision. (3) Your display must contain all the features as shown in Figures 1, 2, and 3. The
+activity Java class must have as comments your name, a short description, and what you learned in one
+or two sentences from the lab assignment.
