@@ -10,7 +10,7 @@ import android.widget.Toast;
 /**
  * Author: Jecsan Blanco
  * Version: 03/28/18
- * This app draws a ellipse that travels the path of an eclipse on the screen.
+ * This app draws a circle that travels the path of an ellipse  on the screen.
  */
 
 public class WalkAnimation extends View {
