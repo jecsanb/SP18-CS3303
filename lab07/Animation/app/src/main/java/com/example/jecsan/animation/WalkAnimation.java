@@ -7,23 +7,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.Random;
-
 /**
- * an instance of WalkAnimation will draw a solid circle after taking rest for 1 sec
+ * Author: Jecsan Blanco
+ * Version: 03/28/18
+ * This app draws a ellipse that travels the path of an eclipse on the screen.
  */
 
 public class WalkAnimation extends View {
 
-    private float cx, cy,radius, sHeight, sWidth,angle;
-    private Random r;
-    Context c;
+    private float ellipseX, ellipseY,radius, sHeight, sWidth,angle;
+    Context context;
 
-    public WalkAnimation(Context context, float w, float h){
+    public WalkAnimation(Context context, float screenWidth, float screenHeight){
         super(context);
-        c = context;
-        sWidth = w - 100;
-        sHeight = h - 100;
+        this.context = context;
+        sWidth = screenWidth - 100; // corrects to keep away from the edges.
+        sHeight = screenHeight - 100;
         radius = 50;
         angle = 0;
         updateCoordinates();
@@ -35,16 +34,19 @@ public class WalkAnimation extends View {
         Paint paint = new Paint();
         paint.setStyle(Paint.Style.FILL);
         paint.setColor(Color.BLUE);
-        canvas.drawCircle(cx, cy,radius,paint);
-        angle = ((angle + 1) % 360);
-        updateCoordinates();
+
+        canvas.drawCircle(ellipseX, ellipseY,radius,paint);
+
+        angle = ((angle + 1) % 360); updateCoordinates();
+
         Log.i("WalkAnimation","Angle:" + Double.toString(angle));
         try{
+            //fps
             Thread.sleep(10);
 
         }
         catch (InterruptedException e){
-            Toast.makeText(c, "Fatal error during the sleep interval", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this.context, "Fatal error during the sleep interval", Toast.LENGTH_SHORT).show();
         }
         // invalidate whole view and invoke the callback onDraw()
        invalidate();
@@ -52,16 +54,27 @@ public class WalkAnimation extends View {
 
     private void updateCoordinates(){
 
-        //coordinates within the region and
-        //x = hradcos(theta)
-        //y = vradsin(theta)
+       /* gives the x and y  coordinates on a ellipse given an angle.o
+        An ellipse can be defined as the locus of all points that satisfy the equations
+        x = a cos t
+        y = b sin t
+        where:
+        x,y are the coordinates of any point on the ellipse,
+                a, b are the radius on the x and y axes respectively, ( * See radii notes below )
+        t is the parameter, which ranges from 0 to 2π radians.
+        */
 
         float rads = (float)  Math.toRadians(angle);
-        cx = sWidth/2 + (sWidth/2 - 50)*(float)Math.cos(rads);
-        cy = (float)(sHeight/2.2 )+ (sHeight/2 - 100 )*(float)Math.sin(rads);
+        float a = (sWidth/2 - 50);
+        float b = (sHeight/2 -100);
+        float shiftX = sWidth/2;
+        float shiftY = sHeight/2;
 
-        Log.i("WalkAnimation","x:" + Float.toString(cx));
-        Log.i("WalkAnimation","y:" + Float.toString(cy));
+        ellipseX = shiftX + a*(float)Math.cos(rads);
+        ellipseY = shiftY + b*(float)Math.sin(rads);
+
+        Log.i("WalkAnimation","x:" + Float.toString(ellipseX));
+        Log.i("WalkAnimation","y:" + Float.toString(ellipseY));
 
 
     }
