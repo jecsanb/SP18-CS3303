@@ -1,0 +1,8 @@
+Programming Assignment # 7 due 04/04/2018
+In this assignment, you need to build an app that will move (animate) a solid circle along an elliptic path
+like a comet. Give your favorite color for the solid circle. Your app should display a complete trajectory
+on an AVD Nexus 6 (API 26). You must make sure the app will run on a lab computer before submitting
+for grading. Name your app as ‘My Comet’ which must be saved in a folder named Lab7. Name your
+main activity as MyCometActvity. java and the class which extends View class as
+CometAnimation.java. A possible path is shown below in Figure 1. But you can do better by finding the
+screen width and height and using the dimensions to find the center of the elliptic path. 
