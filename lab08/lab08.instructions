@@ -1,0 +1,6 @@
+Programming Assignment # 8 due 04/11/2018
+This project must be completed as a group assignment of two individuals to a group. Only the designated group individual submits the work and the grade for the group is same for its members. We will use the same groups as decided in class when working on Programming Assignment 4. In the comment section of the entry point activity, you need to give the names of members of the group, the portion of the app coded by each member and percentage of grade each member should get based on the contribution to the project. This is an honor code and you should only take credit on what you contribute. Both members must agree to the contributions and the grade percentage stated before submitting the project for grading. Points will be deducted if the above information is not provided.
+Build an app for a store that delivers breakfast items on our campus. Name your app as “MyStore” and the entry point Activity Name as “StoreActivity.” The items and their unit prices are as follows:
+Dasani Water (Dasani) $2.00
+Fruit Maple Oatmeal (Fruit Oatmeal) $2.00 Hotcakes (Hotcakes) $2.00
+Sausage Biscuit (Sausage Biscuit) $1.99 Bacon Egg Biscuit (Bacon Egg Biscuit) $2.00 Egg Sausage Biscuit (Egg Sausage) $2.00 Sausage Burrito (Burrito) $1.75
