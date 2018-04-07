@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -38,13 +39,14 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
                 R.drawable.biscuit_with_egg_regular_size_biscuit,
                 R.drawable.sausage_burrito
         };
-        TextView[]    menu_items_tv = new TextView[menu_items_txt.length];
+        TextView[] menu_items_tv = new TextView[menu_items_txt.length];
 
         ImageButton[] menu_buttons = new ImageButton[menu_items_txt.length];
 
         TableLayout menu_table = findViewById(R.id.menu_table);
-        for (int i = 0; i < menu_buttons.length; i++) {
-            TableRow row= new TableRow(this);
+        int i;
+        for (i = 0 ; i < menu_buttons.length; i++) {
+            TableRow row = new TableRow(this);
             TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
             row.setLayoutParams(lp);
 
@@ -56,61 +58,36 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
 
             menu_items_tv[i] = new TextView(this);
             menu_items_tv[i].setText(menu_items_txt[i]);
-            menu_items_tv[i].setTypeface(null,Typeface.BOLD);
+            menu_items_tv[i].setTypeface(null, Typeface.BOLD);
             menu_items_tv[i].setTextSize(20);
             menu_items_tv[i].setTextColor(Color.GRAY);
 
 
             row.addView(menu_buttons[i]);
             row.addView(menu_items_tv[i]);
-            menu_table.addView(row,i);
+            menu_table.addView(row, i);
 
 
         }
+        TableRow row = new TableRow(this);
+        TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+        row.setLayoutParams(lp);
 
-
-
-
+        Button processButton = new Button(this);
+        processButton.setOnClickListener(this);
+        processButton.setText("Process Order");
+        TableRow.LayoutParams params = new TableRow.LayoutParams();
+        params.span = 2;
+        processButton.setLayoutParams(params);
+        processButton.setTypeface(null, Typeface.BOLD);
+        processButton.setTextSize(20);
+        processButton.setTextColor(Color.GRAY);
+        row.addView(processButton);
+        menu_table.addView(row,i);
     }
 
     @Override
     public void onClick(View v) {
 
-        switch (v.getId()) {
-
-            case 0:
-                Toast.makeText(this, "0 pressed", Toast.LENGTH_SHORT).show();
-                // do your code
-                break;
-
-            case 1:
-                // do your code
-                Toast.makeText(this, "1 pressed", Toast.LENGTH_SHORT).show();
-                break;
-
-            case 2:
-                // do your code
-                Toast.makeText(this, "2 pressed", Toast.LENGTH_SHORT).show();
-                break;
-            case 3:
-                // do your code
-                Toast.makeText(this, "3 pressed", Toast.LENGTH_SHORT).show();
-                break;
-            case 4:
-                // do your code
-                Toast.makeText(this, "4 pressed", Toast.LENGTH_SHORT).show();
-                break;
-            case 5:
-                // do your code
-                Toast.makeText(this, "5 pressed", Toast.LENGTH_SHORT).show();
-                break;
-            case 6:
-                // do your code
-                Toast.makeText(this, "6 pressed", Toast.LENGTH_SHORT).show();
-                break;
-
-            default:
-                break;
-        }
     }
 }
