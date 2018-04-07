@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.EditText;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
 
 public class QtyActivity extends AppCompatActivity {
     private EditText qtyEntry;
@@ -17,35 +20,45 @@ public class QtyActivity extends AppCompatActivity {
         setContentView(R.layout.activity_qty);
 
         Intent intent = getIntent();
+        // collect data
+        int clicked = intent.getIntExtra(StoreActivity.CLICKED, -1);
+        String[] menu = intent.getStringArrayExtra(StoreActivity.MENU);
+        int[] item_qty = intent.getIntArrayExtra(StoreActivity.QTYS);
 
-        int clicked = intent.getIntExtra("clicked", -1);
-        String[] menu = intent.getStringArrayExtra("menu");
-        int[] item_qty = intent.getIntArrayExtra("qtys");
-        StringBuilder sb = new StringBuilder("Your order so far \n");
-        for(int i = 0; i < menu.length; i++){
-            sb.append(menu[i].split("\n")[0] + ": " + item_qty[i] + "\n");
+
+        // set the name of the item clicked
+        TextView item = findViewById(R.id.item_name);
+        item.setText(menu[clicked].split("\n")[0]);
+
+        // items so far
+        TableLayout table = findViewById(R.id.qty_table);
+        TextView text;
+        for (int i = 0; i < menu.length; i++) {
+            TableRow row = new TableRow(this);
+            TableRow.LayoutParams lp = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT);
+            row.setLayoutParams(lp);
+            text = new TextView(this);
+            text.setText(menu[i].split("\n")[0]);
+            row.addView(text);
+            text = new TextView(this);
+            text.setText(Integer.toString(item_qty[i]));
+            row.addView(text);
+            table.addView(row, i);
         }
-        TextView qtyMsg = findViewById(R.id.items_so_far);
-        qtyMsg.setText(sb.toString());
-
-
         qtyEntry = findViewById(R.id.qty_entry);
 
-        TextView itemName = findViewById(R.id.item_name);
-        itemName.setText(menu[clicked]);
-
-
     }
+
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
         String qty = qtyEntry.getText().toString();
-        if(qty.equals("")){
+        if (qty.equals("")) {
             Toast.makeText(this, "Enter something!", Toast.LENGTH_SHORT).show();
             return;
         }
         Intent returnIntent = getIntent();
         returnIntent.putExtra("result", qty.equals("") ? "0" : qty);
-        setResult(Activity.RESULT_OK,returnIntent);
+        setResult(Activity.RESULT_OK, returnIntent);
         finish();
 
     }

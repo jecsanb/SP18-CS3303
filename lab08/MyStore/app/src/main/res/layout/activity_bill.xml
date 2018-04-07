@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.jecsan.mystore.BillActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TableLayout
+            android:id="@+id/bill_table"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:stretchColumns="*">
+
+            <TableRow>
+
+                <TextView android:text="Sub Total" />
+
+                <TextView />
+
+                <TextView android:id="@+id/subTotal" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView android:text="TAX (8.25%)" />
+
+                <TextView />
+
+                <TextView android:id="@+id/tax" />
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView android:text="Total" />
+
+                <TextView />
+
+                <TextView android:id="@+id/total" />
+
+            </TableRow>
+        </TableLayout>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -16,6 +16,11 @@ import android.widget.Toast;
 
 public class StoreActivity extends AppCompatActivity implements View.OnClickListener {
 
+    public static final String MENU = "menu";
+    public static final String QTYS = "qtys";
+    public static final String CLICKED = "clicked";
+
+
     public final int QTY_RESULT = 1;
     public final String[] menu_items_txt = new String[]{
             "Dasani Water\n$2.00",
@@ -26,8 +31,8 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
             "Egg Sausage Biscuit\n$2.00",
             "Sausage Burrito\n$1.75"
     };
-    private  int[] items_qty = new int[menu_items_txt.length];
-    private  int clicked;
+    private int[] items_qty = new int[menu_items_txt.length];
+    private int clicked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,19 +104,19 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent();
         clicked = v.getId();
         //process button clicked
-        if(clicked == 7){
+        if (clicked == 7) {
 
             Toast.makeText(this, "Got here", Toast.LENGTH_SHORT).show();
-            intent.setClass(this,BillActivity.class);
-            intent.putExtra("menu", menu_items_txt);
-            intent.putExtra("qtys",items_qty);
+            intent.setClass(this, BillActivity.class);
+            intent.putExtra(MENU, menu_items_txt);
+            intent.putExtra(QTYS, items_qty);
             startActivity(intent);
-        }else{
+        } else {
             //other buttons clicked
-            intent.setClass(this,QtyActivity.class);
-            intent.putExtra("clicked", v.getId());
-            intent.putExtra("menu", menu_items_txt);
-            intent.putExtra("qtys",items_qty);
+            intent.setClass(this, QtyActivity.class);
+            intent.putExtra(CLICKED, v.getId());
+            intent.putExtra(MENU, menu_items_txt);
+            intent.putExtra(QTYS, items_qty);
             startActivityForResult(intent, QTY_RESULT);
         }
     }
@@ -119,11 +124,11 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK && requestCode == QTY_RESULT){
+        if (resultCode == RESULT_OK && requestCode == QTY_RESULT) {
             //oToast.makeText(this, "User qty is: " + data.getStringExtra("result") , Toast.LENGTH_SHORT).show();
             items_qty[clicked] += Integer.parseInt(data.getStringExtra("result"));
 
-        }else{
+        } else {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
     }
