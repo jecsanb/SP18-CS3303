@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jecsan.phonebook.UserListActivity">
+
+    <TableLayout
+        android:paddingRight="10dp"
+        android:paddingLeft="10dp"
+        android:id="@+id/user_list_table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableRow>
+            <TextView
+                android:textColor="@android:color/holo_red_light"
+                android:layout_weight="1"
+                android:text="FirstName"
+                />
+            <TextView
+                android:textColor="@android:color/holo_red_light"
+                android:layout_weight="1"
+                android:text="LastName"
+                />
+            <TextView
+                android:textColor="@android:color/holo_red_light"
+                android:layout_weight="1"
+                android:text="PhoneNumber"
+                />
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</ScrollView>

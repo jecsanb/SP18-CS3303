@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">PhoneBook</string>
+    <string name="first_name">First Name</string>
+    <string name="last_name">Last Name</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="add_button">Add</string>
+    <string name="show_all_button">SHOW ALL</string>
+    <string name="delete_button">DELETE</string>
+    <string name="clear_button">CLEAR FIELDS</string>
+</resources>

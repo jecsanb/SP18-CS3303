@@ -106,7 +106,7 @@ public class StoreActivity extends AppCompatActivity implements View.OnClickList
         //process button clicked
         if (clicked == 7) {
 
-            Toast.makeText(this, "Got here", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "Got here", Toast.LENGTH_SHORT).show();
             intent.setClass(this, BillActivity.class);
             intent.putExtra(MENU, menu_items_txt);
             intent.putExtra(QTYS, items_qty);
