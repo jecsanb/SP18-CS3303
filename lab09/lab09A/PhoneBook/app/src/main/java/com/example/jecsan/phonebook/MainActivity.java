@@ -1,9 +1,13 @@
 package com.example.jecsan.phonebook;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.net.Uri;
+import android.nfc.Tag;
 import android.renderscript.Script;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,13 +50,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private boolean checkForEmptyFields() {
         EditText[] fields = {fname_entry, lnameEntry, phoneEntry};
+
+        if (phoneEntry.getText().toString().length() != 10) {
+            phoneEntry.setError("Invalid Number! (10 numbers only)");
+            return false;
+        }
+
         for (EditText field : fields) {
             if (field.getText().toString().equals("")) {
                 field.setError("Field Required!");
-                return  true;
+                return  false;
             }
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -61,6 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (id) {
             case R.id.add_button:
                 if(checkForEmptyFields()){
+                    Log.i("ADDING", "TESTING ADD TO DATABASE.");
                     addContactToDatabase(createContact());
                 }
                 break;
@@ -81,15 +92,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (EditText field : fields) {
             field.setText("");
         }
-
     }
 
     private void deleteContactFromDatabase(Contact contact) {
-        Toast.makeText(this, "Contact Deleted!", Toast.LENGTH_SHORT).show();
+        String selection = "firstName = \"" + fname_entry.getText().toString() + "\"" + " AND " +
+                "lastName = \"" + lnameEntry.getText().toString() + "\"";
+        int result =
+                getContentResolver().delete(MyContentProvider.CONTENT_URI,selection,null);
+        if(result > 0){
+            Toast.makeText(this, "Contact Deleted!", Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, "No Match.", Toast.LENGTH_SHORT).show();
     }
 
     private Contact createContact() {
         try {
+            Log.i("ADDING", "IN createContact().");
             return new Contact(fname_entry.getText().toString(),
                     lnameEntry.getText().toString(),
                     phoneEntry.getText().toString()
@@ -99,10 +118,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             return null;
         }
+
     }
 
     private void addContactToDatabase(Contact contact) {
-        //pull data from fields and added it to data base
+        //pull data from fields and added it to data
+        Log.i("TAGS", "THE TAGS OF CONTACT IS: " + contact.getfName() + " " + contact.getlName() + " " + contact.getPhoneNumber());
+
+        ContentValues values = new ContentValues();
+        values.put(MyContentProvider.COLUMN_FIRST_NAME, contact.getfName());
+        values.put(MyContentProvider.COLUMN_LAST_NAME, contact.getlName());
+        values.put(MyContentProvider.COLUMN_PHONE, contact.getPhoneNumber());
+        Uri uri = getContentResolver().insert(MyContentProvider.CONTENT_URI,values);
         Toast.makeText(this, "Contact Added!", Toast.LENGTH_SHORT).show();
+        fname_entry.setText("");
+        lnameEntry.setText("");
+        phoneEntry.setText("");
     }
 }

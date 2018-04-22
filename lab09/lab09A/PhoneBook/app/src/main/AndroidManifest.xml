@@ -16,7 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UserListActivity"></activity>
+        <activity android:name=".UserListActivity" />
+
+        <provider
+            android:name=".MyContentProvider"
+            android:authorities="com.example.jecsan.phonebook.MyContentProvider"
+            android:enabled="true"
+            android:exported="true"></provider>
     </application>
 
 </manifest>
