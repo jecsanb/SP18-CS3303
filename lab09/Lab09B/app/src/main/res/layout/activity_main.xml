@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.pp1002478.makeacall.MainActivity">
+
+        <!-- row 1 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10sp"
+            android:layout_marginLeft="10sp"
+            >
+
+            <TextView
+                android:layout_width="100sp"
+                android:layout_height="wrap_content"
+                android:text="First Name"/>
+            <EditText
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/firstName"
+                android:text=""/>
+
+        </LinearLayout>
+
+        <!-- row 2 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10sp"
+            >
+
+            <TextView
+                android:layout_width="100sp"
+                android:layout_height="wrap_content"
+                android:text="Last Name"/>
+            <EditText
+                android:layout_width="150sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/lastName"
+                android:ems="10"
+                android:inputType="text"/>
+        </LinearLayout>
+
+        <!-- row 4 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10sp"
+            >
+
+            <Button
+                android:layout_width="75sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/find"
+                android:text="Find"/>
+
+            <Button
+                android:layout_width="200sp"
+                android:layout_height="wrap_content"
+                android:id="@+id/makecall"
+                android:text="Make A Call" />
+
+        </LinearLayout>
+
+        <!-- row 5 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginLeft="10sp"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/show_number" />
+
+        </LinearLayout>
+
+</LinearLayout>
+
