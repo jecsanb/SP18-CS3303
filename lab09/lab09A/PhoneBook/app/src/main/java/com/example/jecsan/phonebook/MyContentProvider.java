@@ -1,5 +1,11 @@
 package com.example.jecsan.phonebook;
 
+/**
+ * Authors:  Peterson Pham  and Jecsan Blanco
+ * Work done  50/50 for whole project.
+ * Version: 04/22/19
+ * Allows us to create a database and store the needed data
+ */
 import android.content.ContentProvider;
 import android.content.ContentValues;
 import android.content.Context;

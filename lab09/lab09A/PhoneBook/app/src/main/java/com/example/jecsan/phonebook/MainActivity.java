@@ -1,4 +1,10 @@
 package com.example.jecsan.phonebook;
+/**
+ * Authors:  Peterson Pham  and Jecsan Blanco
+ * Work done  50/50 for whole project.
+ * Version: 04/22/19
+ * Allows a user to add contacts to a database.
+ */
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -59,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (EditText field : fields) {
             if (field.getText().toString().equals("")) {
                 field.setError("Field Required!");
-                return  false;
+                return false;
             }
         }
         return true;
@@ -70,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         switch (id) {
             case R.id.add_button:
-                if(checkForEmptyFields()){
+                if (checkForEmptyFields()) {
                     Log.i("ADDING", "TESTING ADD TO DATABASE.");
                     addContactToDatabase(createContact());
                 }
@@ -98,11 +104,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         String selection = "firstName = \"" + fname_entry.getText().toString() + "\"" + " AND " +
                 "lastName = \"" + lnameEntry.getText().toString() + "\"";
         int result =
-                getContentResolver().delete(MyContentProvider.CONTENT_URI,selection,null);
-        if(result > 0){
+                getContentResolver().delete(MyContentProvider.CONTENT_URI, selection, null);
+        if (result > 0) {
             Toast.makeText(this, "Contact Deleted!", Toast.LENGTH_SHORT).show();
-        }
-        else
+        } else
             Toast.makeText(this, "No Match.", Toast.LENGTH_SHORT).show();
     }
 
@@ -129,7 +134,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         values.put(MyContentProvider.COLUMN_FIRST_NAME, contact.getfName());
         values.put(MyContentProvider.COLUMN_LAST_NAME, contact.getlName());
         values.put(MyContentProvider.COLUMN_PHONE, contact.getPhoneNumber());
-        Uri uri = getContentResolver().insert(MyContentProvider.CONTENT_URI,values);
+        Uri uri = getContentResolver().insert(MyContentProvider.CONTENT_URI, values);
         Toast.makeText(this, "Contact Added!", Toast.LENGTH_SHORT).show();
         fname_entry.setText("");
         lnameEntry.setText("");
